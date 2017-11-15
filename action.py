@@ -1,3 +1,4 @@
+import smtplib
 import requests
 
 # ****************************************************************************************
@@ -20,7 +21,8 @@ def _perform(user, password):
 
     print "==> " + data['title'] + " =="
     print "==> " + data['date_modified'] + " =="
-    print "==> Downloading [  =========  ] "
+    print "==> Downloading [ 0%  =========  ] "
+    print "==> " + "Done."
     response = requests.get(URL + DOMINICA_PSS_BENEFICIARY_REGISTRAION + ".csv",  auth=(user, password))
     with open("C:/Users/g-sta/Desktop/test1.csv", "wb") as code:
         code.write(response.content)
@@ -30,7 +32,8 @@ def _perform(user, password):
     print " "
     print "==> " + data['title'] + " =="
     print "==> " + data['date_modified'] + " =="
-    print "==> Downloading [  =========  ] "
+    print "==> Downloading [ 0%  =========  ] "
+    print "==> " + "Done."
     response = requests.get(URL + DOMINICA_RELIEF_POST_DISTRIBUTION_MONITORING + ".csv",  auth=(user, password))
     with open("C:/Users/g-sta/Desktop/test2.csv", "wb") as code:
         code.write(response.content)
@@ -40,7 +43,8 @@ def _perform(user, password):
     print " "
     print "==> " + data['title'] + " =="
     print "==> " + data['date_modified'] + " =="
-    print "==> Downloading [  =========  ] "
+    print "==> Downloading [ 0%  =========  ] "
+    print "==> " + "Done."
     response = requests.get(URL + DOMINICA_CTP_BENEFICIARY_REGISTRATION + ".csv",  auth=(user, password))
     with open("C:/Users/g-sta/Desktop/test3.csv", "wb") as code:
         code.write(response.content)
@@ -48,6 +52,12 @@ def _perform(user, password):
     print " "
     print "====================================================="
 
+
+    # TEST AREA
+    mail_server = smtplib.SMTP('smtp.gmail.com', 587)
+    mail_server.login("email", "password")
+    msg = "Test from Kobo DRC download"
+    mail_server.sendmail("recepient", msg)
 
 # *****************************************************************************************
 #  ADD CREDS TO RUN
